@@ -1,12 +1,10 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.util.Date;
 
 @Entity
 @DiscriminatorValue("etd")
-@Getter @Setter
 public class Etudiant extends Membre {
 	@Temporal(TemporalType.DATE)
 	private Date dateInscription;
@@ -23,5 +21,29 @@ public class Etudiant extends Membre {
 		super(cin, nom, prenom, dateNaissance, cv, email, password);
 		this.dateInscription = dateInscription;
 		this.diplome = diplome;
+	}
+
+	public Date getDateInscription() {
+		return dateInscription;
+	}
+
+	public void setDateInscription(Date dateInscription) {
+		this.dateInscription = dateInscription;
+	}
+
+	public String getDiplome() {
+		return diplome;
+	}
+
+	public void setDiplome(String diplome) {
+		this.diplome = diplome;
+	}
+
+	public EnseignantChercheur getEncadrant() {
+		return encadrant;
+	}
+
+	public void setEncadrant(EnseignantChercheur encadrant) {
+		this.encadrant = encadrant;
 	}
 }
