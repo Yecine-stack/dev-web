@@ -5,6 +5,7 @@ import com.example.demo.entities.Etudiant;
 import com.example.demo.entities.EnseignantChercheur;
 import com.example.demo.repositories.MembreRepository;
 import com.example.demo.repositories.EtudiantRepository;
+import com.example.demo.repositories.EnseignantChercheurRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,13 @@ public class MemberImpl implements IMemberService {
 
 	private final MembreRepository memberRepository;
 	private final EtudiantRepository etudiantRepository;
+	private final EnseignantChercheurRepository enseignantChercheurRepository;
 
 	// Manual constructor to replace @AllArgsConstructor
-	public MemberImpl(MembreRepository memberRepository, EtudiantRepository etudiantRepository) {
+	public MemberImpl(MembreRepository memberRepository, EtudiantRepository etudiantRepository, EnseignantChercheurRepository enseignantChercheurRepository) {
 		this.memberRepository = memberRepository;
 		this.etudiantRepository = etudiantRepository;
+		this.enseignantChercheurRepository = enseignantChercheurRepository;
 	}
 
 	@Override
@@ -68,12 +71,12 @@ public class MemberImpl implements IMemberService {
 
 	@Override
 	public List<EnseignantChercheur> findByGrade(String grade) {
-		return memberRepository.findByGrade(grade);
+		return enseignantChercheurRepository.findByGrade(grade);
 	}
 
 	@Override
 	public List<EnseignantChercheur> findByEtablissement(String etablissement) {
-		return memberRepository.findByEtablissement(etablissement);
+		return enseignantChercheurRepository.findByEtablissement(etablissement);
 	}
     
 	@Override

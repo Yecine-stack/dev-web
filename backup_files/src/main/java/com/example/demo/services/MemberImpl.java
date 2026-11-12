@@ -5,17 +5,21 @@ import com.example.demo.entities.Etudiant;
 import com.example.demo.entities.EnseignantChercheur;
 import com.example.demo.repositories.MembreRepository;
 import com.example.demo.repositories.EtudiantRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class MemberImpl implements IMemberService {
 
-	MembreRepository memberRepository;
-	EtudiantRepository etudiantRepository;
+	private final MembreRepository memberRepository;
+	private final EtudiantRepository etudiantRepository;
+
+	// Manual constructor to replace @AllArgsConstructor
+	public MemberImpl(MembreRepository memberRepository, EtudiantRepository etudiantRepository) {
+		this.memberRepository = memberRepository;
+		this.etudiantRepository = etudiantRepository;
+	}
 
 	@Override
 	public Membre addMember(Membre m) {
@@ -71,19 +75,19 @@ public class MemberImpl implements IMemberService {
 	public List<EnseignantChercheur> findByEtablissement(String etablissement) {
 		return memberRepository.findByEtablissement(etablissement);
 	}
-	
+    
 	@Override
 	public void affecter_EtudiantToEnseignat(Long idEtudiant, Long idEnseignat) {
 		Etudiant etudiant = (Etudiant) memberRepository.findById(idEtudiant).orElse(null);
 		EnseignantChercheur enseignant = (EnseignantChercheur) memberRepository.findById(idEnseignat).orElse(null);
-		
+        
 		if (etudiant != null && enseignant != null) {
 			etudiant.setEncadrant(enseignant);
 			memberRepository.save(etudiant);
 			System.out.println("L'étudiant " + etudiant.getNom() + " a été affecté à l'enseignant " + enseignant.getNom());
 		}
 	}
-	
+    
 	@Override
 	public List<Etudiant> findEtudiantsByEnseignant(EnseignantChercheur ens) {
 		return etudiantRepository.findByEncadrant(ens);
