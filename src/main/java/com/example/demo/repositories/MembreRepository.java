@@ -11,6 +11,10 @@ public interface MembreRepository extends JpaRepository<Membre, Long> {
 	Membre findByEmail(String email);
 	List<Membre> findByNom(String nom);
 	List<Etudiant> findByDiplome(String diplome);
-	List<EnseignantChercheur> findByGrade(String grade);
-	List<EnseignantChercheur> findByEtablissement(String etablissement);
+	List<EnseignantChercheur> findByGrade(String grade);//enseignant chercheur repository and fix in impl
+	List<EnseignantChercheur> findByEtablissement(String etablissement);//same
 }
+
+
+
+//must have ensegnant rpository (cours)
