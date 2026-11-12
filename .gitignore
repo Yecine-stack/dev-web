@@ -1,33 +1,17 @@
-HELP.md
+# Ignore target directories
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*/target/
 
-### STS ###
-.apt_generated
+# Ignore Eclipse settings
+.settings/
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+*.class
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Ignore IntelliJ settings
+.idea/
 *.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+# Ignore the inner git repo of myconfig so the root repo tracks it normally
+src/main/resources/myconfig/.git/
+ConfigServer/src/main/resources/myconfig/.git/
